@@ -8,29 +8,15 @@ namespace Robot_Project.Classes
 {
     public class PertahananSuper : IKemampuan
     {
-        int cooldown;
+        public int Cooldown { get; set; }
+        public int MaxCooldown { get; } = 7;  
+        public void Gunakan(Robot pengguna, Robot target) { }
 
-        public void Gunakan(Robot pengguna, Robot target)
+        public void Gunakan(Robot pengguna)
         {
-            if (cooldown > 0)
-            {
-                Console.WriteLine("Kemampuan Pertahanan Super Sedang Cooldown!");
-                return;
-            }
-            Console.WriteLine("Robot sedang melakukan Pertahanan Super.");
-            pengguna.Armor += 20;
-            cooldown = 2;
-        }
-        public void KurangiCooldown()
-        {
-            if (cooldown > 0)
-            {
-                cooldown -= 1;
-            }
-        }
-        public bool KeteranganCooldown()
-        {
-            return (cooldown > 0);
+            Console.WriteLine($"{pengguna.Nama} menggunakan Pertahanan Super!");
+            pengguna.Armor += 10;
+            Console.WriteLine($"{pengguna.Nama} meningkatkan armor! Armor sekarang: {pengguna.Armor}");
         }
     }
 }

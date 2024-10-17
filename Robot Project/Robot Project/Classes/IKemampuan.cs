@@ -8,9 +8,9 @@ namespace Robot_Project.Classes
 {
     public interface IKemampuan
     {
+        int Cooldown { get; set; }
+        int MaxCooldown { get; }
         void Gunakan(Robot pengguna, Robot target);
-        void KurangiCooldown();
-
-        bool KeteranganCooldown();
+        void Gunakan(Robot pengguna);
     }
 }

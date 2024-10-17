@@ -49,6 +49,7 @@
     <Compile Include="Classes\PertahananSuper.cs" />
     <Compile Include="Classes\Robot.cs" />
     <Compile Include="Classes\RobotKroco.cs" />
+    <Compile Include="Classes\RobotSimulator.cs" />
     <Compile Include="Classes\SeranganListrik.cs" />
     <Compile Include="Classes\SeranganPlasma.cs" />
     <Compile Include="Program.cs" />

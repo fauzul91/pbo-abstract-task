@@ -8,33 +8,16 @@ namespace Robot_Project.Classes
 {
     public class Perbaikan : IKemampuan
     {
-        int cooldown;
+        public int Cooldown { get; set; }
+        public int MaxCooldown { get; } = 7;  
 
-        public void Gunakan(Robot pengguna, Robot target)
+        public void Gunakan(Robot pengguna, Robot target) { }
+
+        public void Gunakan(Robot pengguna)
         {
-            if (KeteranganCooldown()) // ketika skill cooldown
-            {
-                Console.WriteLine("Kemampuan perbaikan sedang Cooldown!");
-                return;
-            }
-
-            Console.WriteLine("Robot sedang melakukan perbaikan.");
+            Console.WriteLine($"{pengguna.Nama} menggunakan Perbaikan!");
             pengguna.Energi += 20;
-            cooldown = 2;
-        }
-
-        public void KurangiCooldown() // mengurangi cooldown skill giliran
-        {
-            if (cooldown > 0)
-            {
-                cooldown -= 1;
-            }
-        }
-
-        public bool KeteranganCooldown() // memeriksa apakah skill cd
-        {
-            return cooldown > 0;
+            Console.WriteLine($"{pengguna.Nama} memulihkan energi! Energi sekarang: {pengguna.Energi}");
         }
     }
-
 }

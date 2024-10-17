@@ -8,41 +8,17 @@ namespace Robot_Project.Classes
 {
     public class SeranganPlasma : IKemampuan
     {
-        int cooldown;
+        public int Cooldown { get; set; }
+        public int MaxCooldown { get; } = 4;  
 
         public void Gunakan(Robot pengguna, Robot target)
         {
-            int SeranganPlasma = 20;
-            if (cooldown > 0)
-            {
-                Console.WriteLine("Kemampuan Serangan Plasma Sedang Cooldown!");
-                return;
-            }
-            else if (SeranganPlasma >= target.Energi)
-            {
-                target.Energi = 0; // Energi target menjadi 0 
-                Console.WriteLine($"Robot {pengguna.Nama} Menembakkan Plasma Cannon! pada {target.Nama}");
-                Console.WriteLine($"Robot {target.Nama} telah terbunuh karena kehabisan energi disebabkan oleh Plasma Cannon.");
-            }
-            else
-            {
-                // Jika serangan tidak membunuh target, kurangi energi target
-                target.Energi -= SeranganPlasma;
-                Console.WriteLine($"Robot {pengguna.Nama} Menembakkan Plasma Cannon! pada {target.Nama}, mengurangi energi sebesar {SeranganPlasma}.");
+            Console.WriteLine($"{pengguna.Nama} menggunakan Serangan Plasma pada {target.Nama}!");
+            int damage = pengguna.Serangan * 2;
+            target.Energi -= damage;
+            Console.WriteLine($"{target.Nama} terkena serangan plasma! Energi tersisa: {target.Energi}");
+        }
 
-            }
-            cooldown = 2;
-        }
-        public void KurangiCooldown()
-        {
-            if (cooldown > 0)
-            {
-                cooldown -= 1;
-            }
-        }
-        public bool KeteranganCooldown()
-        {
-            return (cooldown > 0);
-        }
+        public void Gunakan(Robot pengguna) { }        
     }
 }

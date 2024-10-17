@@ -8,56 +8,37 @@ namespace Robot_Project.Classes
 {
     public class BosRobot : Robot
     {
-        public BosRobot(string nama, int energi, int armor, int serangan)
-            : base(nama, energi, armor, serangan) { }
+        public BosRobot(string nama) : base(nama, 180, 10, 25) { }
 
         public override void GunakanKemampuan(IKemampuan kemampuan, Robot target)
         {
-            kemampuan.Gunakan(this, target);
+            if (kemampuan.Cooldown == 0)
+            {
+                kemampuan.Gunakan(this, target);
+                kemampuan.Cooldown = kemampuan.MaxCooldown;  
+            }
+            else
+            {
+                Console.WriteLine($"{Nama} tidak dapat menggunakan {kemampuan.GetType().Name}, cooldown tersisa {kemampuan.Cooldown} giliran.");
+            }
         }
 
-        public void Diserang(Robot penyerang)
+        public override void GunakanKemampuan(IKemampuan kemampuan)
         {
-            int seranganYangDiterima = penyerang.Serangan;
-            // Mengurangi armor terlebih dahulu jika masih ada
-            if (Armor > 0)
+            if (kemampuan.Cooldown == 0)
             {
-                if (seranganYangDiterima >= Armor)
-                {
-                    seranganYangDiterima -= Armor;
-                    Armor = 0;
-                    Console.WriteLine($"{penyerang.Nama} menghancurkan armor {Nama}.");
-                }
-                else
-                {
-                    Armor -= seranganYangDiterima;
-                    seranganYangDiterima = 0;
-                    Console.WriteLine($"{penyerang.Nama} mengurangi armor {Nama} sebanyak {penyerang.Serangan}.");
-                }
+                kemampuan.Gunakan(this);
+                kemampuan.Cooldown = kemampuan.MaxCooldown;  
             }
-
-            // Mengurangi energi jika ada sisa serangan
-            if (seranganYangDiterima > 0)
+            else
             {
-                Energi -= seranganYangDiterima;
-                if (Energi < 0)
-                {
-                    Energi = 0; // Mencegah nilai negatif
-                }
-                Console.WriteLine($"{penyerang.Nama} menyerang {Nama}, mengurangi energi sebesar {seranganYangDiterima}.");
-            }
-
-            // Mengecek apakah energi habis
-            if (Energi <= 0)
-            {
-                Mati();
+                Console.WriteLine($"{Nama} tidak dapat menggunakan {kemampuan.GetType().Name}, cooldown tersisa {kemampuan.Cooldown} giliran.");
             }
         }
 
-        // Metode yang akan dipanggil jika energi bos habissssssss
         public void Mati()
         {
-            Console.WriteLine($"Bos {Nama} telah mati.");
+            Console.WriteLine($"{Nama} telah mati!");
         }
     }
 }

@@ -40,7 +40,8 @@ namespace Robot_Project.Classes
                 }
                 else
                 {
-                    Console.WriteLine("Energi harus lebih dari 0.");           }
+                    Console.WriteLine("Energi harus lebih dari 0.");
+                }
             }
         }
 
@@ -82,46 +83,18 @@ namespace Robot_Project.Classes
             }
         }
 
-        public virtual void Serang(Robot target)
+        public void Serang(Robot target)
         {
-            int serangan_yangdiberikan = Serangan;
-            if (target.Armor > 0)
-            {
-                if (serangan_yangdiberikan >= target.Armor) 
-                {
-                    serangan_yangdiberikan -= target.Armor; 
-                    target.Armor = 0; 
-                    Console.WriteLine($"{Nama} menghancurkan armor {target.Nama}.");
-                }
-                else
-                {
-                    target.Armor -= serangan_yangdiberikan;
-                    serangan_yangdiberikan = 0; 
-                    Console.WriteLine($"{Nama} mengurangi armor {target.Nama} sebanyak {Serangan}.");
-                }
-            }
-
-            if (serangan_yangdiberikan > 0)
-            {
-                target.Energi -= serangan_yangdiberikan;
-                if (target.Energi < 0)
-                {
-                    target.Energi = 0;
-                }
-                Console.WriteLine($"{Nama} menyerang {target.Nama}, mengurangi energi sebanyak {serangan_yangdiberikan}.");
-            }
-
-            if (target.Energi <= 0)
-            {
-                Console.WriteLine($"Robot {target.Nama} telah mati.");
-            }
+            int damage = Math.Max(0, Serangan - target.Armor);
+            target.Energi -= damage;
+            Console.WriteLine($"{Nama} menyerang {target.Nama} dan memberikan {damage} kerusakan!");
         }
 
         public abstract void GunakanKemampuan(IKemampuan kemampuan, Robot target);
-
+        public abstract void GunakanKemampuan(IKemampuan kemampuan);
         public void CetakInformasi()
         {
-            Console.WriteLine($"Nama Robot\t: {Nama}\nEnergi\t\t: {Energi}\nArmor\t\t: {Armor}\nSerangan\t: {Serangan}");
+            Console.WriteLine($"Nama Robot: {Nama}\nEnergi: {Energi}\nArmor: {Armor}\nSerangan: {Serangan}");
         }
 
         public Robot(string nama, int energi, int armor, int serangan)
