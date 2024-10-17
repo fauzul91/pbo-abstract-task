@@ -1,0 +1,7 @@
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\obj\Debug\Robot Project.csproj.AssemblyReference.cache
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\obj\Debug\Robot Project.csproj.CoreCompileInputs.cache
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\bin\Debug\Robot Project.exe.config
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\bin\Debug\Robot Project.exe
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\bin\Debug\Robot Project.pdb
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\obj\Debug\Robot Project.exe
+C:\Users\fauzu\source\repos\Robot Project\Robot Project\obj\Debug\Robot Project.pdb
